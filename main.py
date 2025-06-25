@@ -256,15 +256,15 @@ avg_rt_inc = 0 # Zerujemy średni czas reakcji dla bodźców niezgodnych, aby po
 
 for trial_no in range(conf['NO_TRAINING_TRIALS']):
     key_pressed, rt = run_trial(win, conf, clock, stims[trial_no]['stim'])
-    if (key_pressed == 'z' and (stims[trial_no] in stim_l)) or (
-            key_pressed == 'm' and (stims[trial_no] in stim_r)):  # prawidłowo naciśnięty przycisk
+    if (key_pressed == 'z' and (stims[trial_no]['stim'] in stim_l)) or (
+            key_pressed == 'm' and (stims[trial_no]['stim'] in stim_r)):  # prawidłowo naciśnięty przycisk
         corr = True
     else:  # brak reakcji / zły przycisk
         corr = False
     RESULTS.append([PART_ID, trial_no, rt, corr])
 
     # Sumujemy czasy reakcji i liczymy średni czas reakcji oddzielnie dla bodźców zgodnych i niezgodnych
-    if key_pressed and (stims[trial_no] in stim_con):
+    if key_pressed and (stims[trial_no]['stim'] in stim_con):
         avg_rt_con += rt # bodźce zgodne
 
     elif key_pressed:
